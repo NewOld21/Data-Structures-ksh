@@ -111,12 +111,16 @@ void moveOddItemsToBack(LinkedList *ll)
 	}
 
 	if(odd.head != NULL){
-		cur = odd.head;
-		for (int i=0; i<odd.size;i++){
-			insertNode(ll, ll->size,cur->item);
-			cur = cur->next;
-		}
-		removeAllItems(&odd);
+		ListNode* temp = odd.head;
+		cur = findNode(ll, ll->size-1);
+		cur->next = temp;
+		ll->size += odd.size;
+		//for (int i=0; i<odd.size;i++){
+		// 	insertNode(ll, ll->size,cur->item);
+		// 	cur = cur->next;
+		// }
+		odd.head =NULL;
+		//removeAllItems(&odd);
 	}
 	
 }

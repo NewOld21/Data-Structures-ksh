@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section C - Stack and Queue Questions
@@ -116,12 +116,26 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	if(ll->size>0){
+		ListNode* a = ll->head;
+		for(int i=0; i<ll->size;i++){
+			enqueue(q,a->item);
+			a = a->next;
+		}
+	}
+	
 }
 
 void removeOddValues(Queue *q)
 {
-	/* add your code here */
+	int size = q->ll.size;
+	for(int i=0;i<size;i++){
+		int item = dequeue(q);
+		if(item%2==0){
+			enqueue(q, item);
+		}
+	}
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////////

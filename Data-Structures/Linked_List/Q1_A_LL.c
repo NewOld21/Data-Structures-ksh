@@ -91,7 +91,7 @@ int main()
 int insertSortedLL(LinkedList *ll, int item)
 {	
 	if (ll == NULL)
-		return;
+		return -1;
 
 	ListNode *cur = ll->head;
 	int size = ll->size;
@@ -108,6 +108,7 @@ int insertSortedLL(LinkedList *ll, int item)
 		}
 		else{
 			index = i;
+			break;
 		}
 	}
 

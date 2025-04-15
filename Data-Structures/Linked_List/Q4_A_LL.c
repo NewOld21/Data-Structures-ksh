@@ -86,39 +86,49 @@ int main()
 
 void moveEvenItemsToBack(LinkedList *ll)
 {
-	if (ll == NULL)
+	if (ll == NULL || ll->head == NULL || ll->size <= 1)
 		return;
-	LinkedList even;
-	even.head = NULL;
-	even.size = 0;
-	ListNode *cur, *next;
-	
-	cur = ll->head;
-	int size = ll->size;
-	int n = 0;
-	for(int i=0;i<size;i++) {
-		next = cur->next;
-		if(cur->item % 2 == 0){
-			insertNode(&even, even.size, cur->item);
-			removeNode(ll,i-n);
-			n=n+1;
-			
-		}
-		if (next == NULL){
-			break;
-		}
-		cur = next;
-	}
 
-	if(even.head != NULL){
-		ListNode* temp = even.head;
-		cur = findNode(ll, ll->size-1);
-		cur->next = temp;
-		ll->size += even.size;
-		even.head =NULL;
-		removeAllItems(&even);
+	ListNode *cur = ll->head;
+	ListNode *prev = NULL;
+	ListNode *tail = ll->head;
+
+	// tail 마지막 노드로 이동
+	while (tail->next != NULL)
+		tail = tail->next;
+
+	int size = ll->size;
+
+	for(int i=0 ; i<size; i++) {
+		// item이 짝수인 경우
+		if (cur->item % 2 == 0) {
+			
+			ListNode *even = cur;
+
+			// 짝수가 첫 노드면 head 갱신
+			if (prev == NULL) {
+				ll->head = cur->next;
+				cur = cur->next;
+			} 
+			// 짝수가 head가 아니면 짝수 노드 삭제
+			else {
+				prev->next = cur->next;
+				cur = cur->next;
+			}
+
+			// 짝수를 맨 뒤에 붙이기
+			even->next = NULL;
+			tail->next = even;
+			tail = even;
+		} 
+		// item이 홀수인 경우
+		else {
+			//prev를 현재 노드로 갱신 후 다음 노드로 이동
+			prev = cur;
+			cur = cur->next;
+		}
+
 	}
-	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

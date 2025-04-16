@@ -111,9 +111,9 @@ int main()
 
 void removeUntil(Stack *s, int value)
 {
-	LinkedList l1;
-	l1.head =NULL;
-	l1.size = 0;
+	LinkedList nl;
+	nl.head =NULL;
+	nl.size = 0;
 	if(isEmptyStack(s)){
 		return;
 	}
@@ -122,11 +122,11 @@ void removeUntil(Stack *s, int value)
 	for (int i=0; i<size;i++){
 		int item = pop(s);
 		if(item==value){
-			s->ll = l1;
+			s->ll = nl;
 			push(s,item);
 			return;
 		}
-		insertNode(&l1,0,item);
+		insertNode(&nl,0,item);
 	}
 	return;
 }

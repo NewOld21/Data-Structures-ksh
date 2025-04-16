@@ -111,7 +111,7 @@ void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 		n1 = ll1->head;
 		int size = ll2->size;
 		int n = 1;
-		for (int i; i<size;i++) {
+		for (int i=0; i<size;i++) {
 			n2 = ll2->head;
 			if(n1->next == NULL){
 				insertNode(ll1,ll1->size,n2->item);

@@ -109,9 +109,8 @@ int main()
 
 void recursiveReverse(Queue *q)
 {	
-	if (q->ll.size==0){
-		return;
-	}
+	if (q == NULL || q->ll.size <= 1) return;
+	
 	int item = dequeue(q);
 	recursiveReverse(q);
 	enqueue(q,item);

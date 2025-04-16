@@ -112,11 +112,13 @@ int main()
 
 void reverse(Queue *q)
 {
+	if (q == NULL || q->ll.size <= 1) return;
+	
 	Stack s;
 	s.ll.size=0;
 	s.ll.head=NULL;
 	s.ll.tail=NULL;
-
+	
 	int size = q->ll.size;
 	for(int i=0; i<size; i++){
 		int item = dequeue(q);

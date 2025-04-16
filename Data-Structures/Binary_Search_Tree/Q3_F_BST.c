@@ -96,7 +96,7 @@ void preOrderIterative(BSTNode *root)
 	Stack s;
 	s.top = NULL; 
 	push(&s, root);
-	while (isEmpty(&s)==0)
+	while (!isEmpty(&s))
 	{
 		BSTNode* cur = pop(&s);
 		if(cur == NULL) continue;

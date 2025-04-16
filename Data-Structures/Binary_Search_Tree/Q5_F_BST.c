@@ -122,7 +122,47 @@ void postOrderIterativeS2(BSTNode *root)
    deletes the key and returns the new root. Make recursive function. */
 BSTNode* removeNodeFromTree(BSTNode *root, int value)
 {
-	/* add your code here */
+	if(root == NULL) return root;
+	BSTNode* ret;
+	// 노드의 값이 value일때
+	if(root->item == value){
+
+		//value 노드가 자식이 없을 경우
+		if(root->left ==NULL && root->right == NULL){
+			free(root);
+			return NULL;
+		}
+		//value 노드가 자식이 하나 있는 경우
+		else if(root->left ==NULL || root->right == NULL){	
+			ret =root->left ? root->left : root->right;
+			free(root);
+			return ret;
+			
+		}
+		//value 노드가 자식이 모두 있는 경우
+		else{	
+			ret = root->left;
+			// 전임자 노드 찾기
+			while(ret->right!=NULL)
+				ret = ret->right;
+					
+			root->item = ret->item;
+			// 전임자 item 노드 삭제
+			root->left = removeNodeFromTree(root->left, ret->item);
+		}	
+	}
+		
+	// 노드의 값이 value보다 클 때
+	else if(root->item > value) {
+		root->left = removeNodeFromTree(root->left, value);
+	}
+	// 노드의 값이 value보다 작을 때
+	else{
+		root->right = removeNodeFromTree(root->right, value);
+	}
+	
+	return root;
+	
 }
 ///////////////////////////////////////////////////////////////////////////////
 
